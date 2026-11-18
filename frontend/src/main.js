@@ -2,7 +2,17 @@
 import './style.css';
 
 const app = document.querySelector('#app');
-const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://employee-management-backend-dak0.onrender.com/api/employees";
+async function fetchEmployees() {
+  try {
+    const response = await fetch(`${API_URL}/employees`);
+    const data = await response.json();
+    console.log("Fetched from DB:", data);
+    // Render this 'data' array into your UI table instead of the mock array
+  } catch (error) {
+    console.error("Error fetching employees:", error);
+  }
+}
 const initialEmployees = [
   { id: 1, name: 'Arun Kumar', username: 'employee', department: 'IT', designation: 'Developer', email: 'arun@company.com', salary: 35000 },
   { id: 2, name: 'Priya Sharma', username: 'priya', department: 'HR', designation: 'HR Executive', email: 'priya@company.com', salary: 32000 },
